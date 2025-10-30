@@ -38,7 +38,6 @@ public class CameraActivity extends AppCompatActivity implements TextureView.Sur
 
     @Override
     public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-        // Обработка изменения размера
     }
 
     @Override
@@ -49,7 +48,6 @@ public class CameraActivity extends AppCompatActivity implements TextureView.Sur
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-        // Обновление текстуры
     }
 
     private void openCamera() {
@@ -57,11 +55,9 @@ public class CameraActivity extends AppCompatActivity implements TextureView.Sur
             camera = Camera.open();
             Camera.Parameters parameters = camera.getParameters();
 
-            // Настройка параметров камеры
             parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
             camera.setParameters(parameters);
 
-            // Установка предварительного просмотра
             camera.setPreviewTexture(textureView.getSurfaceTexture());
             camera.startPreview();
 
@@ -79,13 +75,8 @@ public class CameraActivity extends AppCompatActivity implements TextureView.Sur
             camera.takePicture(null, null, new Camera.PictureCallback() {
                 @Override
                 public void onPictureTaken(byte[] data, Camera camera) {
-                    // Обработка сделанного фото
                     Toast.makeText(CameraActivity.this, "Фото сделано!", Toast.LENGTH_SHORT).show();
 
-                    // Здесь можно сохранить фото или обработать данные
-                    // data - массив байтов с изображением
-
-                    // Перезапускаем предварительный просмотр для возможности сделать следующее фото
                     camera.startPreview();
                 }
             });
